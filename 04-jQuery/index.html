@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
- 
+
 <HEAD>
     <TITLE> PROJETO </TITLE>
     <script src="https://kit.fontawesome.com/9efb764542.js" crossorigin="anonymous"></script>
@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </HEAD>
- 
+
 <BODY>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -26,29 +26,29 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="history.html">History</a>
                     </li>
- 
+
                 </ul>
- 
+
             </div>
         </div>
     </nav>
- 
+
     <br />
     <div class="container-fluid">
- 
+
         <div class="row">
- 
+
             <!-- KITCHEN -->
             <div class="col-md-4">
- 
+
                 <div class="card">
- 
+
                     <div class="card-header text-center">
                         <strong>Kitchen</strong>
                     </div>
- 
+
                     <div class="card-body">
- 
+
                         <div class="sensor">
                             <div class="sensor-title text-success">
                                 <i class="fa-solid fa-temperature-three-quarters"></i>
@@ -59,200 +59,275 @@
                                     </span>
                                 </span>
                             </div>
- 
+
                             <div class="sensor-time">
                                 5 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
                                 <span id="kitchenLightIcon"><i class="fa-solid fa-lightbulb"></i></span>
                                 Lights
- 
+
                                 <div class="form-check form-switch float-end">
-                                    <input id="kitchenLightBtn" class="form-check-input" type="checkbox"
-                                        role="switch" aria-label="Kitchen lights" checked>
+                                    <input id="kitchenLightBtn" class="form-check-input" type="checkbox" role="switch"
+                                        aria-label="Kitchen lights" checked>
                                 </div>
                             </div>
- 
+
                             <div class="sensor-time">
                                 10 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
                                 <i class="fa-solid fa-eye"></i>
                                 West Window
- 
+
                                 <span class="value text-success fw-normal float-end">
                                     Open
                                 </span>
                             </div>
- 
+
                             <div class="sensor-time">
                                 15 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
                                 <i class="fa-solid fa-eye"></i>
                                 North Window
- 
+
                                 <span class="value text-success fw-normal float-end">
                                     Open
                                 </span>
                             </div>
- 
+
                             <div class="sensor-time">
                                 15 minutes ago
                             </div>
                         </div>
- 
+
                     </div>
                 </div>
- 
+
             </div>
- 
- 
+
+
             <!-- LIVING ROOM -->
             <div class="col-md-4">
- 
+
                 <div class="card">
- 
+
                     <div class="card-header text-center fw-bold">
                         Living Room
                     </div>
- 
+
                     <div class="card-body">
- 
+
                         <div class="sensor">
                             <div class="sensor-title text-danger">
                                 <i class="fa-solid fa-temperature-three-quarters"></i>
                                 <span class="text-dark">
                                     Temperature
- 
+
                                     <span id="livingRoomTemperature" class="value fw-normal float-end">
                                         22.6 °C
                                     </span>
                                 </span>
                             </div>
- 
+
                             <div class="sensor-time">
                                 5 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
-                                <span id="livingCeilingLightIcon"><i class="fa-regular fa-lightbulb text-secondary"></i></span>
+                                <span id="livingCeilingLightIcon"><i
+                                        class="fa-regular fa-lightbulb text-secondary"></i></span>
                                 Ceiling Lights
- 
+
                                 <div class="form-check form-switch float-end">
                                     <input id="livingCeilingLightBtn" class="form-check-input" type="checkbox"
                                         role="switch" aria-label="Living room ceiling lights">
                                 </div>
                             </div>
- 
+
                             <div class="sensor-time">
                                 5 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
-                                <span id="livingAmbientLightIcon"><i class="fa-solid fa-lightbulb text-warning"></i></span>
+                                <span id="livingAmbientLightIcon"><i
+                                        class="fa-solid fa-lightbulb text-warning"></i></span>
                                 Ambient Lights
- 
+
                                 <div class="form-check form-switch float-end">
                                     <input id="livingAmbientLightBtn" class="form-check-input" type="checkbox"
                                         role="switch" aria-label="Living room ambient lights" checked>
                                 </div>
                             </div>
- 
+
                             <div class="sensor-time">
                                 7 minutes ago
                             </div>
                         </div>
- 
- 
+
+
                         <div class="sensor">
                             <div class="sensor-title">
                                 <span id="livingMusicIcon"><i class="fa-solid fa-music text-primary"></i></span>
                                 Ambient Music
- 
+
                                 <div class="form-check form-switch float-end">
-                                    <input id="livingMusicBtn" class="form-check-input" type="checkbox"
-                                        role="switch" aria-label="Living room ambient music" checked>
+                                    <input id="livingMusicBtn" class="form-check-input" type="checkbox" role="switch"
+                                        aria-label="Living room ambient music" checked>
                                 </div>
                             </div>
- 
+
                             <div class="sensor-time">
                                 17 minutes ago
                             </div>
                         </div>
- 
+
                     </div>
                 </div>
- 
+
             </div>
- 
- 
+
+
             <!-- CLOCK -->
             <div class="col-md-4">
- 
+
                 <div class="card">
- 
+
                     <div class="card-header text-center fw-bold">
                         Clock
                     </div>
- 
+
                     <div class="card-body">
- 
+
                         <div class="sensor-title">
                             <i class="fa-regular fa-clock text-primary"></i>
                             Time
- 
+
                             <span id="timeValue" class="value fw-normal float-end">
                                 22:30
                             </span>
                         </div>
- 
+
                         <div class="sensor-title">
                             <i class="fa-regular fa-calendar-days"></i>
                             Date
- 
+
                             <span id="dateValue" class="value fw-normal float-end">
                                 2019-09-18
                             </span>
                         </div>
- 
+
                         <div class="sensor-title">
                             <i class="fa-solid fa-sun text-warning"></i>
                             Sunrise / Sunset above horizon
                         </div>
- 
+
                     </div>
                 </div>
- 
+
             </div>
- 
+
+            <!-- WEATHER -->
+            <div class="col-md-4">
+
+                <div class="card">
+
+                    <div class="card-header text-center fw-bold">
+                        Weather
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="sensor-title">
+                            <i class="fa-solid fa-clock text-primary"></i>
+                            <span class="fw-bold">Current Temperature</span>
+                            <span id="temperatureValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+
+                        <div class="sensor-title">
+                            <i class="fa-solid fa-temperature-three-quarters"></i>
+                            <span class="fw-bold">Max. Temperature</span>
+
+                            <span id="maxTemperatureValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+
+                        <div class="sensor-title">
+                            <i class="fa-solid fa-temperature-three-quarters"></i>
+                            <span class="fw-bold">Min. Temperature</span>
+
+                            <span id="minTemperatureValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+
+                        <div class="sensor-title">
+                            <i class="fa-solid fa-temperature-three-quarters"></i>
+                            <span class="fw-bold">Humidity</span>
+
+                            <span id="humidityValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+                        <div class="sensor-title">
+                            <i class="fa-regular fa-clock "></i>
+                            <span class="fw-bold">Sunrise Time</span>
+
+                            <span id="sunriseTimeValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+
+                        <div class="sensor-title">
+                            <i class="fa-solid fa-clock "></i>
+                            <span class="fw-bold">Sunset Time</span>
+
+                            <span id="sunsetTimeValue" class="value fw-normal float-end">
+                            </span>
+                        </div>
+                        <div class="sensor-time">
+                            Last Update
+                            <span id="weatherUpdate" class="float-end">--</span>
+                        </div>
+
+                        <div class="input-group input-group-sm mt-2">
+                            <input id="cityInput" class="form-control" type="text" value="Leiria" aria-label="City">
+                            <button id="getWeatherBtn" class="btn btn-success" type="button">Get</button>
+                        </div>
+
+                        <div id="weatherError" class="text-danger small mt-1"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
- 
+
     </div>
- 
- 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
 </BODY>
- 
+
 </HTML>

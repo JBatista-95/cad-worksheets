@@ -1,10 +1,5 @@
-var app = (function() {
+var app = (function($) {
     'use strict';
- 
-    // ---------------------------------------------------------------
-    // Exercício 1 - Hello World (descomentar só para testar o ponto 1d)
-    // ---------------------------------------------------------------
-    // alert('Hello World');
  
     // ---------------------------------------------------------------
     // Exercício 2 - Home Sweet Home
@@ -26,28 +21,28 @@ var app = (function() {
  
     // Atualiza o ícone/cor de acordo com o estado do botão
     function updateDevice(device) {
-        var button = document.getElementById(device.buttonId);
-        var icon = document.getElementById(device.iconId);
+        var $button = $('#' + device.buttonId);
+        var $icon = $('#' + device.iconId);
  
-        if (button === null || icon === null) {
+        if ($button.length === 0 || $icon.length === 0) {
             return;
         }
  
         // O Font Awesome (kit JS) troca cada <i> por um <svg>, por isso o id está
         // num <span> e recriamos o <i> sempre que o estado muda.
-        var classes = button.checked ? device.on : device.off;
-        icon.innerHTML = '<i class="' + classes + '"></i>';
+        var classes = $button.prop('checked') ? device.on : device.off;
+        $icon.html('<i class="' + classes + '"></i>');
     }
  
     // Liga o evento de clique a um dispositivo e sincroniza o estado inicial
     function setupDevice(device) {
-        var button = document.getElementById(device.buttonId);
+        var $button = $('#' + device.buttonId);
  
-        if (button === null) {
+        if ($button.length === 0) {
             return;
         }
  
-        button.addEventListener('change', function() {
+        $button.on('change', function() {
             updateDevice(device);
         });
  
@@ -64,12 +59,8 @@ var app = (function() {
     }
  
     function updateTemperatures() {
-        temperatureIds.forEach(function(id) {
-            var element = document.getElementById(id);
- 
-            if (element !== null) {
-                element.textContent = randomTemperature() + ' °C';
-            }
+        $.each(temperatureIds, function(index, id) {
+            $('#' + id).text(randomTemperature() + ' °C');
         });
     }
  
@@ -82,27 +73,102 @@ var app = (function() {
  
     function updateDate() {
         var now = new Date();
-        var element = document.getElementById('dateValue');
  
-        if (element !== null) {
-            element.textContent = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
-        }
+        $('#dateValue').text(
+            now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate())
+        );
     }
  
     function updateTime() {
         var now = new Date();
-        var element = document.getElementById('timeValue');
  
-        if (element !== null) {
-            element.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+        $('#timeValue').text(
+            pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds())
+        );
+    }
+ 
+    // ---------------------------------------------------------------
+    // Meteorologia (OpenWeatherMap)
+    // ---------------------------------------------------------------
+    var API_KEY = 'b30d8b26fd9c42564fd5ed6938c39e48';
+    var API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+    var lastFetch = null;            // Date do último pedido com sucesso
+ 
+    // Converte timestamp Unix (segundos) para "7h46"
+    function formatHour(unixSeconds) {
+        var date = new Date(unixSeconds * 1000);
+        return date.getHours() + 'h' + pad(date.getMinutes());
+    }
+ 
+    function plural(value, unit) {
+        return value + ' ' + unit + (value === 1 ? '' : 's') + ' ago';
+    }
+ 
+    // < 1 min: segundos | < 1 h: minutos | resto: horas
+    function updateLastFetch() {
+        if (lastFetch === null) {
+            return;
         }
+ 
+        var seconds = Math.floor((Date.now() - lastFetch.getTime()) / 1000);
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var text;
+ 
+        if (seconds < 60) {
+            text = plural(seconds, 'second');
+        } else if (minutes < 60) {
+            text = plural(minutes, 'minute');
+        } else {
+            text = plural(hours, 'hour');
+        }
+ 
+        $('#weatherUpdate').text(text);
+    }
+ 
+    function showWeather(data) {
+        $('#temperatureValue').text(data.main.temp + ' °C');
+        $('#maxTemperatureValue').text(data.main.temp_max + ' °C');
+        $('#minTemperatureValue').text(data.main.temp_min + ' °C');
+        $('#humidityValue').text(data.main.humidity + '%');
+        $('#sunriseTimeValue').text(formatHour(data.sys.sunrise));
+        $('#sunsetTimeValue').text(formatHour(data.sys.sunset));
+        $('#weatherError').text('');
+ 
+        lastFetch = new Date();
+        updateLastFetch();
+    }
+ 
+    function getWeather(city) {
+        $.getJSON(API_URL, { units: 'metric', q: city, appid: API_KEY })
+            .done(showWeather)
+            .fail(function() {
+                $('#weatherError').text('Não foi possível obter a meteorologia para "' + city + '".');
+            });
+    }
+ 
+    function setupWeather() {
+        $('#getWeatherBtn').on('click', function() {
+            getWeather($('#cityInput').val().trim());
+        });
+ 
+        $('#cityInput').on('keydown', function(event) {
+            if (event.key === 'Enter') {
+                getWeather($(this).val().trim());
+            }
+        });
+ 
+        getWeather($('#cityInput').val().trim());
+        setInterval(updateLastFetch, 1000);
     }
  
     // ---------------------------------------------------------------
     // Arranque
     // ---------------------------------------------------------------
     function init() {
-        devices.forEach(setupDevice);
+        $.each(devices, function(index, device) {
+            setupDevice(device);
+        });
  
         updateTemperatures();
         setInterval(updateTemperatures, 5000);
@@ -110,9 +176,11 @@ var app = (function() {
         updateDate();
         updateTime();
         setInterval(updateTime, 1000);
+ 
+        setupWeather();
     }
  
-    document.addEventListener('DOMContentLoaded', init);
+    $(document).ready(init);
  
-})();
+})(jQuery);
  
